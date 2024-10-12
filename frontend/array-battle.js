@@ -14,9 +14,9 @@ bgsound.volume = 0.4;
 
 // GIFs for enemies
 const enemyGifs = [
-  "/frontend/assets/images/enemy-1.gif", // Example: Add your own enemy GIFs
-  "/frontend/assets/images/enemy-2.gif",
-  "/frontend/assets/images/enemy-3.gif",
+  "/assets/images/enemy-1.gif", // Example: Add your own enemy GIFs
+  "/assets/images/enemy-2.gif",
+  "/assets/images/enemy-3.gif",
 ];
 
 // Generate enemies with random strength for each wave
