@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Battle</title>
+    <link rel="stylesheet" href="array-battle.css">
+</head>
+<body>
+    <header>
+        <h1>Array Battle</h1>
+        <p>Wave: <span id="wave-number">1</span></p>
+        <p>Player Health: <span id="player-health">100</span></p>
+    </header>
+
+    <main>
+        <div class="battle-arena">
+            <!-- Hero container -->
+            <div id="hero-container">
+                <img id="hero-gif" src="/frontend/assets/images/hero.gif" alt="Hero" />
+            </div>
+            <!-- Enemy array container -->
+            <div id="enemy-array" class="array"></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="rotateLeft()">Rotate Left</button>
+            <button class="btn" onclick="rotateRight()">Rotate Right</button>
+            <button class="btn" onclick="reverseArray()">Reverse</button>
+            <button class="btn" onclick="selectAttack()">Select Attack</button>
+            <button class="btn" onclick="sumAttack()">Sum Attack</button>
+        </div>
+    </main>
+    
+    <audio id="attack-sound" src="/frontend/assets/music/attack.mp3"></audio>
+    <audio id="enemy-sound" src="/frontend/assets/music/enemydeath.mp3"></audio>
+    <audio id="game-over" src="/frontend/assets/music/game-over.mp3"></audio>
+    <audio id="bgsound" loop src="/frontend/assets/music/bgsound.mp3"></audio>
+    
+    <script src="array-battle.js"></script>
+</body>
+</html>
