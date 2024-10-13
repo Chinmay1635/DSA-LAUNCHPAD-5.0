@@ -55,3 +55,33 @@ elems.forEach(function (elem) {
     }
   });
 });
+
+var elems2 = document.querySelectorAll(".elem2");
+elems2.forEach(function (elem) {
+  var btns = elem.querySelectorAll("button");
+  var index = 0;
+  var animating = false;
+
+  document.querySelector(".main").addEventListener("click", function () {
+    if (!animating) {
+      animating = true;
+      gsap.to(btns[index], {
+        top: "-=100%",
+        ease: Expo.easeInOut,
+        duration: 0.8,
+        onComplete: function () {
+          gsap.set(this._targets[0], { top: "170%" });
+          animating = false;
+        },
+      });
+
+      index === btns.length - 1 ? (index = 0) : index++;
+
+      gsap.to(btns[index], {
+        top: "-=98%",
+        ease: Expo.easeInOut,
+        duration: 1,
+      });
+    }
+  });
+});
