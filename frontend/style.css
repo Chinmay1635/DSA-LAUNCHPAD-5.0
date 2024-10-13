@@ -11,6 +11,7 @@
 html, body{
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 @font-face {
@@ -135,6 +136,7 @@ a{
     pointer-events: all;
     position: absolute;
     top: 170%;
+    cursor: pointer;
 }
 
 .hero-right{
