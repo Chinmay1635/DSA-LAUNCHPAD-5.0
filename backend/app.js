@@ -13,7 +13,19 @@ const userRoute = require('./routes/user');
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
+
+const corsOptions = {
+    origin: ['http://127.0.0.1:5500', 'https://dsa-launchpad-5.netlify.app'], // Add more origins as needed
+    optionsSuccessStatus: 200,
+  };
+  
+  app.use(cors(corsOptions));
+// const corsOptions = {
+//     origin: 'https://dsa-launchpad-5.netlify.app',
+//     optionsSuccessStatus: 200,
+//   };
+//   app.use(cors(corsOptions));
+  
 // app.use((req, res, next) => {
 //     console.log(`Request URL: ${req.originalUrl}`);
 //     next();
