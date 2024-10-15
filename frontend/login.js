@@ -33,7 +33,7 @@ signUpBtn.addEventListener('click', (e) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
   
-    fetch('http://localhost:3000/registerUser', {
+    fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ signInBtn.addEventListener('click', (e) => {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
   
-    fetch('http://localhost:3000/loginUser', {
+    fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
