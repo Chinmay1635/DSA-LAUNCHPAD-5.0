@@ -9,7 +9,7 @@ module.exports.registerUser = async function (req, res) {
         //Checking is user is already registered or not
         let user = await userModel.findOne({ email: email });
         if (user) {
-            return res.json("You are already registered. Please log in");
+            return res.json({message: "You are already registered. Please log in"});
         }
 
        const password = "DSALAUNCHPAD@5";
@@ -31,9 +31,9 @@ module.exports.registerUser = async function (req, res) {
         });
 
 
-        res.json(`User created with email ${email}`);
+        res.json({message:`User created with email ${email}`, success: true});
     } catch (error) {
-        res.json(error.message);
+        res.json({error: error.message, success: false});
     }
 }
 
@@ -45,7 +45,7 @@ module.exports.loginUser = async function (req, res) {
 
         //checking user exists or not
         if (!user) {
-            return res.json("User not found! Register first.");
+            return res.json({message:"User not found! Register first.", success: false});
         }
 
         //if user exists then validating his password
@@ -60,13 +60,13 @@ module.exports.loginUser = async function (req, res) {
                 maxAge: 30 * 24 * 60 * 60 * 1000,
             });
 
-        res.json(`Loged in with email ${email}`);
+        res.json({message: `Loged in with email ${email}`, success: true});
             
 
         } else {
-            res.json("username or password is incorrect");
+            res.json({message: "username or password is incorrect", success: false});
         }
     } catch (error) {
-        res.json(error.message);
+        res.json({error: error.message, success: false});
     }
 }
