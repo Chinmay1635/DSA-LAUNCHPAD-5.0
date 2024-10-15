@@ -10,6 +10,7 @@ const db = require('./config/mongoose');
 const userModel = require('./models/userModel');
 const userRoute = require('./routes/user');
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -35,7 +36,7 @@ const corsOptions = {
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
   
 app.use((req, res, next) => {
