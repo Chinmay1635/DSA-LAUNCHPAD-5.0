@@ -14,18 +14,29 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-const corsOptions = {
-    origin: ['http://127.0.0.1:5500', 'https://dsa-launchpad-5.netlify.app'], // Add more origins as needed
-    optionsSuccessStatus: 200,
-  };
+// const corsOptions = {
+//     origin: ['http://127.0.0.1:5500', 'https://dsa-launchpad-5.netlify.app'], // Add more origins as needed
+//     optionsSuccessStatus: 200,
+//   };
   
 //   app.use(cors(corsOptions));
-  app.use(cors())
+//   app.use(cors())
 // const corsOptions = {
 //     origin: 'https://dsa-launchpad-5.netlify.app',
 //     optionsSuccessStatus: 200,
 //   };
 //   app.use(cors(corsOptions));
+
+
+const corsOptions = {
+  origin: ['https://dsa-launchpad-5.netlify.app'], // Add your frontend URL here
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the HTTP methods you allow
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+app.use(cors(corsOptions));
+
   
 app.use((req, res, next) => {
     console.log(`Request URL: ${req.originalUrl}`);
