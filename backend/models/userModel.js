@@ -1,15 +1,24 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        match: [/.+\@.+\..+/, 'Please fill a valid email address']
-    },
-    password: String,
+// Schema for levels within a game
+const levelSchema = new mongoose.Schema({
+    level: Number,  // Level number
+    score: Number   // Score (default set to 0 or null)
 });
 
-module.exports.userModel = mongoose.model("user", userSchema);
+// Schema for games with levels
+const gameSchema = new mongoose.Schema({
+    game: String,             // Game name
+    levels: [levelSchema]     // Array of levels and their scores
+});
+
+// User schema
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    scores: [gameSchema]     // Predefined games and scores for each user
+});
+
+const userModel = mongoose.model('User', userSchema);
+
+module.exports = { userModel };
