@@ -1,3 +1,4 @@
+const { clear } = require("console");
 
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
@@ -67,6 +68,7 @@ timerDisplay.innerText = `Time Left: ${timeLeft}s`;
 
 //Start the timer
 function startTimer() {
+    clearInterval(timer); // Clear any existing timer
     timer = setInterval(() => {
         timeLeft--;
         timerDisplay.innerText = `Time Left: ${timeLeft}s`;
@@ -346,6 +348,7 @@ document.getElementById('submit').addEventListener('click', () => {
     const tree = buildTreeStructure();
     if (validateBST(tree)) {
         document.getElementById('result').innerText = 'Success! You built a valid Binary Search Tree!';
+        clearInterval(timer); // Stop the timer
         score = calculateScore(currentLevel);
         completeLevel(score, currentLevel, 'BST Builder');
         if (currentLevel < 3) {
