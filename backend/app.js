@@ -34,6 +34,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the HTTP methods you allow
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
   optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // To allow cookies
 };
 
 // app.use(cors(corsOptions));

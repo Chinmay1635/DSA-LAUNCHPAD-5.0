@@ -116,6 +116,7 @@ signUpBtn.addEventListener('click', (e) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ name, email }),
+          credentials: 'include',
         });
       })
       .then(response => response.json())
@@ -168,6 +169,7 @@ fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
+    credentials: 'include',
   })
   .then(async () => {
     // Show the "Logging in..." message

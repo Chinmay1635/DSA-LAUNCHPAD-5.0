@@ -30,10 +30,11 @@ module.exports.registerUser = async function (req, res) {
             httpOnly: true,
             secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000,
+            sameSite: 'none',
         });
 
 
-        res.json({message:`User created with email ${email}`, success: true});
+        res.json({message:`User created with email ${email}`, success: true, token: token});
     } catch (error) {
         res.json({error: error.message, success: false});
     }
