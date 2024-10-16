@@ -75,6 +75,7 @@ signUpBtn.addEventListener('click', (e) => {
     .then(response => response.json())
     .then(async data => {
         if (data.success) {
+          localStorage.setItem('email', email);
           console.log(data.token);
             await Swal.fire({
                 title: "Hurray...",
@@ -199,6 +200,7 @@ fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
     Swal.close(); // Close the "Logging in..." message
 
     if (data.success) {
+      localStorage.setItem('email', email);
       await Swal.fire({
         title: "Hurray...",
         text: "Logged in successfully!",
