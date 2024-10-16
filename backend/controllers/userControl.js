@@ -31,6 +31,7 @@ module.exports.registerUser = async function (req, res) {
             secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
+            path: '/',
         });
 
 
@@ -61,6 +62,8 @@ module.exports.loginUser = async function (req, res) {
                 httpOnly: true,
                 secure: true,
                 maxAge: 30 * 24 * 60 * 60 * 1000,
+                sameSite: 'none',
+                path: '/',
             });
 
         res.json({message: `Loged in with email ${email}`, success: true});
