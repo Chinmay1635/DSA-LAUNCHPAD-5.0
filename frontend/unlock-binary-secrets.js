@@ -315,14 +315,14 @@ function calculateScore(level){
 }
 
 function completeLevel(score, level, game) {
-    
+    const email = localStorage.getItem('email');
 
     fetch('https://dsa-launchpad-5-0.vercel.app/update-score', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ score: score, level: level, game: game}) 
+        body: JSON.stringify({ score: score, level: level, game: game, email: email }) 
     })
     .then(response => response.json())
     .then(data => {
