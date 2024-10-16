@@ -30,14 +30,14 @@ app.use(express.urlencoded({extended:true}));
 
 
 const corsOptions = {
-  origin: ['https://dsa-launchpad-5.netlify.app'], // Add your frontend URL here
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the HTTP methods you allow
-  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // To allow cookies
+  origin: ['https://dsa-launchpad-5.netlify.app'], 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  optionsSuccessStatus: 200,
+  credentials: true, 
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.options('*', cors());
 
