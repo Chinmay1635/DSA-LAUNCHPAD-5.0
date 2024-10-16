@@ -1,6 +1,7 @@
 const {userModel} = require('../models/userModel');
 const generateToken = require('../utils/generateToken');
 const mongoose  = require('mongoose');
+const predefinedGames = require('../config/gamesConfig');
 
 
 module.exports.registerUser = async function (req, res) {
@@ -18,6 +19,7 @@ module.exports.registerUser = async function (req, res) {
         user = await userModel.create({
             email,
             password: password,
+            scores: predefinedGames,
         });
 
         //Token generation
