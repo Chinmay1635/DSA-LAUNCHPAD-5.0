@@ -37,14 +37,9 @@ const corsOptions = {
   credentials: true, // To allow cookies
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
-app.options('*', cors({
-  origin: 'https://dsa-launchpad-5.netlify.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.options('*', cors());
 
 
   
