@@ -35,13 +35,7 @@ module.exports.registerUser = async function (req, res) {
             domain: 'https://dsa-launchpad-5.netlify.app/'
         });
 
-        // res.cookie("token", token, {
-        //     httpOnly: true,
-        //     secure: process.env.NODE_ENV === 'production',
-        //     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        //     path: '/',
-        //   });
+       
 
 
         res.json({message:`User created with email ${email}`, success: true, token: token});
