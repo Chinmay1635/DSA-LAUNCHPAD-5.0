@@ -26,13 +26,21 @@ module.exports.registerUser = async function (req, res) {
         let token = generateToken(user.email);
 
         //Setting cookie into browser
+        // res.cookie("token", token, {
+        //     // httpOnly: true,
+        //     // secure: true,
+        //     // maxAge: 30 * 24 * 60 * 60 * 1000,
+        //     sameSite: 'none',
+        //     path: '/',
+        // });
+
         res.cookie("token", token, {
-            // httpOnly: true,
-            // secure: true,
-            // maxAge: 30 * 24 * 60 * 60 * 1000,
-            sameSite: 'none',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             path: '/',
-        });
+          });
 
 
         res.json({message:`User created with email ${email}`, success: true, token: token});

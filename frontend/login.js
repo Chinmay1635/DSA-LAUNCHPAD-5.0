@@ -75,6 +75,7 @@ signUpBtn.addEventListener('click', (e) => {
     .then(response => response.json())
     .then(async data => {
         if (data.success) {
+          console.log(data.token);
             await Swal.fire({
                 title: "Hurray...",
                 text: "Account created successfully!",
