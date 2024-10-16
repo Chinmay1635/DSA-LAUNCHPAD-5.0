@@ -1,4 +1,4 @@
-const { clear } = require("console");
+
 
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
