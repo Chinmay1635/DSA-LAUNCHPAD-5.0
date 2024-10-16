@@ -268,7 +268,76 @@ function checkAllNodesPlaced() {
     }
 }
 
+function calculateScore(level){
+    if(level==1){
+        if(timeLeft>=20){
+            return 10;
+        }else if(timeLeft>=18){
+            return 9;
+        }else if(timeLeft>=16){
+            return 8;
+        }else if(timeLeft>=14){
+            return 7;
+        }else if(timeLeft>=12){
+            return 6;
+        }else{
+            return 5;
+        }
+    }else if(level==2){
+        if(timeLeft>=40){
+            return 10;
+        }else if(timeLeft>=35){
+            return 9;
+        }else if(timeLeft>=30){
+            return 8;
+        }else if(timeLeft>=25){
+            return 7;
+        }else if(timeLeft>=15){
+            return 6;
+        }else{
+            return 5;
+        }
+    }else if(level==3){
+        if(timeLeft>=60){
+            return 10;
+        }else if(timeLeft>=50){
+            return 9;
+        }else if(timeLeft>=40){
+            return 8;
+        }else if(timeLeft>=30){
+            return 7;
+        }else if(timeLeft>=20){
+            return 6;
+        }else{
+            return 5;
+        }
+    }
+}
+
+function completeLevel(score, level, game) {
+    
+
+    fetch('https://dsa-launchpad-5-0.vercel.app/update-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ score: score, level: level, game: game}) 
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log("Score updated successfully:", data.newScore);
+        } else {
+            console.error("Failed to update score:", data.message);
+        }
+    })
+    .catch(error => console.error("Error updating score:", error));
+}
+
+
 //Validate if the structure is a valid Binary Search Tree
+let score = 0;
 document.getElementById('submit').addEventListener('click', () => {
     if(checkAllNodesPlaced()){
         alert('Please place all nodes on the tree before submitting.');
@@ -277,6 +346,8 @@ document.getElementById('submit').addEventListener('click', () => {
     const tree = buildTreeStructure();
     if (validateBST(tree)) {
         document.getElementById('result').innerText = 'Success! You built a valid Binary Search Tree!';
+        score = calculateScore(currentLevel);
+        completeLevel(score, currentLevel, 'BST Builder');
         if (currentLevel < 3) {
             currentLevel++;
             if(currentLevel==2){
