@@ -15,6 +15,6 @@ router.post("/registerUser", registerUser);
 
 router.post("/loginuser", loginUser);
 
-router.post("/update-score", isLoggedIn, updateScore)
+router.post("/update-score", updateScore)
 
 module.exports = router;

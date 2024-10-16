@@ -1,8 +1,8 @@
 const {userModel} = require('../models/userModel');
 
 module.exports.updateScore = async function (req, res) {
-    const { score, level, game } = req.body;
-    const email = req.email;  // Extracted from token via middleware
+    const { score, level, game, email } = req.body;
+    
 
     try {
         // Find user and update the score for the specific game and level
