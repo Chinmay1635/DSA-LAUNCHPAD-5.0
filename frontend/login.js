@@ -64,95 +64,96 @@ signUpBtn.addEventListener('click', (e) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
   
-    // fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ name, email }),
-    // })
-    // .then(response => response.json())
-    // .then(async data => {
-    //     if (data.success) {
-    //         await Swal.fire({
-    //             title: "Hurray...",
-    //             text: "Account created successfully!",
-    //             icon: "success"
-    //         });
-    //         startGame();
-    //     } else {
-    //         await Swal.fire({
-    //             title: "Oops..",
-    //             text: "Error!!! Please try again.",
-    //             icon: "error"
-    //         });
-    //     }
-    // })
-    // .catch(error => console.error('Network error:', error));
-
     fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        // body: JSON.stringify({ name, email }),
-      })
-      .then(async () => {
-        // Show the "Creating account..." message
-        const loadingSwal = Swal.fire({
-          title: "Creating account...",
-          text: "Please wait...",
-          icon: "info",
-          allowOutsideClick: false,
-          didOpen: () => {
-            Swal.showLoading();
-          }
-        });
-    
-        // Perform the fetch request
-        return fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email }),
-          credentials: 'include',
-        });
-      })
-      .then(response => response.json())
-      .then(async data => {
-        Swal.close(); // Close the "Creating account..." message
-    
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ name, email }),
+    })
+    .then(response => response.json())
+    .then(async data => {
         if (data.success) {
-          console.log(data.message);
-          await Swal.fire({
-            title: "Hurray...",
-            text: "Account created successfully!",
-            icon: "success"
-          });
-          
-          startGame();
+            await Swal.fire({
+                title: "Hurray...",
+                text: "Account created successfully!",
+                icon: "success"
+            });
+            startGame();
         } else {
-          console.log(data.message);
-          console.log(data.error);
-          await Swal.fire({
-            title: "Oops..",
-            text: "Error!!! Please try again.",
-            icon: "error"
-          });
+            await Swal.fire({
+                title: "Oops..",
+                text: "Error!!! Please try again.",
+                icon: "error"
+            });
         }
-      })
-      .catch(error => {
-        Swal.close(); // Close the "Creating account..." message if there's an error
-        console.error('Network error:', error);
+    })
+    .catch(error => console.error('Network error:', error));
+
+    // fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     // body: JSON.stringify({ name, email }),
+    //   })
+    //   .then(async () => {
+    //     // Show the "Creating account..." message
+    //     const loadingSwal = Swal.fire({
+    //       title: "Creating account...",
+    //       text: "Please wait...",
+    //       icon: "info",
+    //       allowOutsideClick: false,
+    //       didOpen: () => {
+    //         Swal.showLoading();
+    //       }
+    //     });
     
-        // Show an error alert
-        Swal.fire({
-          title: "Network Error",
-          text: "Unable to connect. Please check your connection and try again.",
-          icon: "error"
-        });
-      });
+    //     // Perform the fetch request
+    //     return fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ name, email }),
+    //       credentials: 'include',
+    //     });
+    //   })
+    //   .then(response => response.json())
+    //   .then(async data => {
+    //     Swal.close(); // Close the "Creating account..." message
+    
+    //     if (data.success) {
+    //       console.log(data.message);
+    //       await Swal.fire({
+    //         title: "Hurray...",
+    //         text: "Account created successfully!",
+    //         icon: "success"
+    //       });
+          
+    //       startGame();
+    //     } else {
+    //       console.log(data.message);
+    //       console.log(data.error);
+    //       await Swal.fire({
+    //         title: "Oops..",
+    //         text: "Error!!! Please try again.",
+    //         icon: "error"
+    //       });
+    //     }
+    //   })
+      // .catch(error => {
+      //   Swal.close(); // Close the "Creating account..." message if there's an error
+      //   console.error('Network error:', error);
+    
+      //   // Show an error alert
+      //   Swal.fire({
+      //     title: "Network Error",
+      //     text: "Unable to connect. Please check your connection and try again.",
+      //     icon: "error"
+      //   });
+      // });
     
   });
 signInBtn.addEventListener('click', (e) => {
