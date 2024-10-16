@@ -5,14 +5,47 @@ const registerForm = document.getElementById('register-form');
 const signUpBtn = document.getElementById("signup-btn")
 signInBtn = document.getElementById("signin-btn")
 
+
+var typed = new Typed('.featured-words', {
+    strings: ['Welcome to <span>DSA LAUNCHPAD 5.0</span>',],
+    typeSpeed: 40,
+    showCursor:false,
+    onComplete: function(self) {
+        startTypingTopics();
+    }
+  });
+
+  
+  function startTypingTopics(){
+     var fixedTyped = new Typed("#fixed-text", {
+        strings: ["Master the "],   
+        typeSpeed: 50,              
+        showCursor: false,          
+        onComplete: function () {   
+            startDynamicTyping();
+        }
+    });
+  }
+   
+    function startDynamicTyping() {
+        var dynamicTyped = new Typed("#typed", {
+            strings: ["Basic Concepts", "Arrays", "Strings", "Searching", "Sorting", "Stack", "Queue", "Linked List", "Tree", "Graph"], // Dynamic strings
+            typeSpeed: 50,   
+            backSpeed: 50,   
+            backDelay: 1000, 
+            loop: true,      
+            showCursor: true 
+        });
+    }
+
+
+
 loginBtn.addEventListener('click', () => {
     loginBtn.style.backgroundColor = '#21264D';
     registerBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
     loginForm.style.left = "0%";
     registerForm.style.left = "100%";
     document.querySelector('.col-1').style.borderRadius =  "0 30% 20% 0";
-    // loginForm.classList.remove('hidden');
-    // registerForm.classList.add('hidden');
 });
 
 registerBtn.addEventListener('click', () => {
@@ -21,8 +54,6 @@ registerBtn.addEventListener('click', () => {
     loginForm.style.left = "100%";
     registerForm.style.left = "0%";
     document.querySelector('.col-1').style.borderRadius =  "0 20% 30% 0";
-    // registerForm.classList.remove('hidden');
-    // loginForm.classList.add('hidden');
 });
 
 
@@ -33,31 +64,92 @@ signUpBtn.addEventListener('click', (e) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
   
+    // fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ name, email }),
+    // })
+    // .then(response => response.json())
+    // .then(async data => {
+    //     if (data.success) {
+    //         await Swal.fire({
+    //             title: "Hurray...",
+    //             text: "Account created successfully!",
+    //             icon: "success"
+    //         });
+    //         startGame();
+    //     } else {
+    //         await Swal.fire({
+    //             title: "Oops..",
+    //             text: "Error!!! Please try again.",
+    //             icon: "error"
+    //         });
+    //     }
+    // })
+    // .catch(error => console.error('Network error:', error));
+
     fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email }),
-    })
-    .then(response => response.json())
-    .then(async data => {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email }),
+      })
+      .then(async () => {
+        // Show the "Creating account..." message
+        const loadingSwal = Swal.fire({
+          title: "Creating account...",
+          text: "Please wait...",
+          icon: "info",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+    
+        // Perform the fetch request
+        return fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email }),
+        });
+      })
+      .then(response => response.json())
+      .then(async data => {
+        Swal.close(); // Close the "Creating account..." message
+    
         if (data.success) {
-            await Swal.fire({
-                title: "Hurray...",
-                text: "Account created successfully!",
-                icon: "success"
-            });
-            startGame();
+          await Swal.fire({
+            title: "Hurray...",
+            text: "Account created successfully!",
+            icon: "success"
+          });
+          
+          startGame();
         } else {
-            await Swal.fire({
-                title: "Oops..",
-                text: "Error!!! Please try again.",
-                icon: "error"
-            });
+          await Swal.fire({
+            title: "Oops..",
+            text: "Error!!! Please try again.",
+            icon: "error"
+          });
         }
-    })
-    .catch(error => console.error('Network error:', error));
+      })
+      .catch(error => {
+        Swal.close(); // Close the "Creating account..." message if there's an error
+        console.error('Network error:', error);
+    
+        // Show an error alert
+        Swal.fire({
+          title: "Network Error",
+          text: "Unable to connect. Please check your connection and try again.",
+          icon: "error"
+        });
+      });
+    
   });
 signInBtn.addEventListener('click', (e) => {
     console.log("clicked")
@@ -66,103 +158,68 @@ signInBtn.addEventListener('click', (e) => {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
   
-    fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
+
+fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  })
+  .then(async () => {
+    // Show the "Logging in..." message
+    const loadingSwal = Swal.fire({
+      title: "Logging in...",
+      text: "Please wait...",
+      icon: "info",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // Perform the fetch request
+    return fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
-    })
-    .then(response => response.json())
-    .then(async data => {
-        if (data.success) {
-            await Swal.fire({
-                title: "Hurray...",
-                text: "Logged in successfully!",
-                icon: "success"
-            });
-            
-            startGame();
-        } else {
-            await Swal.fire({
-                title: "Oops..",
-                text: "Error!!!Please try again.",
-                icon: "error"
-            });
-        }
-    })
-    .catch(error => console.error('Network error:', error));
+    });
+  })
+  .then(response => response.json())
+  .then(async data => {
+    Swal.close(); // Close the "Logging in..." message
+
+    if (data.success) {
+      await Swal.fire({
+        title: "Hurray...",
+        text: "Logged in successfully!",
+        icon: "success"
+      });
+      
+      startGame();
+    } else {
+      await Swal.fire({
+        title: "Oops..",
+        text: "Error!!! Please try again.",
+        icon: "error"
+      });
+    }
+  })
+  .catch(error => {
+    Swal.close(); // Close the "Logging in..." message if there's an error
+    console.error('Network error:', error);
+
+    // Show an error alert
+    Swal.fire({
+      title: "Network Error",
+      text: "Unable to connect. Please check your connection and try again.",
+      icon: "error"
+    });
   });
 
-
-//   async function saveUsername() {
-//     const username = document.getElementById('username').value;
-    
-
-//     if (username.trim() === "") {
-//         await Swal.fire({
-//             title: "Oops..",
-//             text: "Please enter a valid username.",
-//             icon: "error"
-//         });
-//         return;
-//     } else {
-//         fetch('https://acm-synanto-24-game.onrender.com/api/user/check-username', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 username: username.trim().toLowerCase()
-//             })
-//         })
-//             .then(res => res.json())
-//             .then(async res => {
-//                 if (res.userExists) {
-//                     await Swal.fire({
-//                         title: "Oops..",
-//                         text: "Username already exists. Please choose a different username.",
-//                         icon: "error"
-//                     });
-//                     return;
-//                 } else {
-//                     fetch('https://acm-synanto-24-game.onrender.com/api/user/save-user', {
-//                         method: 'POST',
-//                         headers: {
-//                             'Content-Type': 'application/json',
-//                         },
-//                         body: JSON.stringify({
-//                             username: username.trim().toLowerCase()
-//                         })
-//                     })
-//                         .then(res => res.json())
-//                         .then(async res => {
-//                             if (res.registered) {
-//                                 await Swal.fire({
-//                                     title: "Hurray...",
-//                                     text: "Username saved successfully!",
-//                                     icon: "success"
-//                                 });
-//                                 document.cookie = `username=${res.user._id}; max-age=86400`;
-//                                 localStorage.setItem('username', res.user.username);
-//                                 localStorage.setItem('progress', 1);
-//                                 startGame();
-//                             } else {
-//                                 await Swal.fire({
-//                                     title: "Oops..",
-//                                     text: "Error saving username. Please try again.",
-//                                     icon: "error"
-//                                 });
-//                             }
-//                         }).catch(error => {
-//                             console.error('Error:', error);
-//                         });
-//                 }
-//             }).catch(error => {
-//                 console.error('Error:', error);
-//             });
-//     }
-// }
+  });
 
 function startGame() {
     window.location.href = '/home.html';
