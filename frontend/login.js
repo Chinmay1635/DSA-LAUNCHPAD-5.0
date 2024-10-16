@@ -95,7 +95,7 @@ signUpBtn.addEventListener('click', (e) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email }),
+        // body: JSON.stringify({ name, email }),
       })
       .then(async () => {
         // Show the "Creating account..." message
@@ -123,6 +123,7 @@ signUpBtn.addEventListener('click', (e) => {
         Swal.close(); // Close the "Creating account..." message
     
         if (data.success) {
+          console.log(data.message);
           await Swal.fire({
             title: "Hurray...",
             text: "Account created successfully!",
@@ -131,6 +132,8 @@ signUpBtn.addEventListener('click', (e) => {
           
           startGame();
         } else {
+          console.log(data.message);
+          console.log(data.error);
           await Swal.fire({
             title: "Oops..",
             text: "Error!!! Please try again.",
