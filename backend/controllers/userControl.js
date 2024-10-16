@@ -27,9 +27,9 @@ module.exports.registerUser = async function (req, res) {
 
         //Setting cookie into browser
         res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 30 * 24 * 60 * 60 * 1000,
+            // httpOnly: true,
+            // secure: true,
+            // maxAge: 30 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
             path: '/',
         });
@@ -59,9 +59,9 @@ module.exports.loginUser = async function (req, res) {
 
             //Setting cookie into browser
             res.cookie("token", token, {
-                httpOnly: true,
-                secure: true,
-                maxAge: 30 * 24 * 60 * 60 * 1000,
+                // httpOnly: true,
+                // secure: true,
+                // maxAge: 30 * 24 * 60 * 60 * 1000,
                 sameSite: 'none',
                 path: '/',
             });
