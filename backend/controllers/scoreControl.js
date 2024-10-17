@@ -45,7 +45,6 @@ module.exports.updateScore = async function (req, res) {
     }
 };
 
-const { userModel } = require('../models/userModel');
 
 module.exports.getLeaderboard = async function (req, res) {
     const { game } = req.params;  
