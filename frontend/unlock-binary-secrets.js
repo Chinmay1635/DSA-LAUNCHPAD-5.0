@@ -350,7 +350,7 @@ document.getElementById('submit').addEventListener('click', () => {
         document.getElementById('result').innerText = 'Success! You built a valid Binary Search Tree!';
         clearInterval(timer); // Stop the timer
         score = calculateScore(currentLevel);
-        completeLevel(score, currentLevel, 'BST Builder');
+        completeLevel(score, currentLevel, 'BST-Builder');
         if (currentLevel < 3) {
             currentLevel++;
             if(currentLevel==2){
