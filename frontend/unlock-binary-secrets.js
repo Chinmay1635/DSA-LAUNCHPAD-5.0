@@ -1,4 +1,15 @@
+const resetBtn = document.getElementById('reset');
 
+resetBtn.addEventListener('click', () => {
+    if(currentLevel==1){
+        timeLeft = 30;
+    }else if(currentLevel==2){
+        timeLeft = 100;
+    }else if(currentLevel==3){
+        timeLeft = 120;
+    }
+    startLevel(currentLevel);
+});
 
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
