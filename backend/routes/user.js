@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 
 const {loginUser, registerUser} = require('../controllers/userControl');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
-const { updateScore } = require('../controllers/scoreControl');
+const { updateScore, getLeaderboard } = require('../controllers/scoreControl');
 const userModel = require('../models/userModel');
 
 router.get("/", function(req,res){
@@ -15,6 +15,8 @@ router.post("/registerUser", registerUser);
 
 router.post("/loginuser", loginUser);
 
-router.post("/update-score", updateScore)
+router.post("/update-score", updateScore);
+
+router.get("/leaderboard/:game", getLeaderboard)
 
 module.exports = router;

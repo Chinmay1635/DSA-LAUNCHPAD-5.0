@@ -1,6 +1,6 @@
 const predefinedGames = [
     {
-        game: "BST Builder",
+        game: "BST-Builder",
         levels: [
             { level: 1, score: 0 },
             { level: 2, score: 0 },
@@ -8,7 +8,7 @@ const predefinedGames = [
         ]
     },
     {
-        game: "Sorting Game",
+        game: "Sorting-Game",
         levels: [
             { level: 1, score: 0 },
             { level: 2, score: 0 },

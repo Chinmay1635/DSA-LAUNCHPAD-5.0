@@ -9,7 +9,11 @@ const levelSchema = new mongoose.Schema({
 // Schema for games with levels
 const gameSchema = new mongoose.Schema({
     game: String,             // Game name
-    levels: [levelSchema]     // Array of levels and their scores
+    levels: [levelSchema],     // Array of levels and their scores
+    totalScore: {             // Total score for the game
+        type: Number,
+        default: 0
+    }
 });
 
 // User schema

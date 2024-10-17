@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .leaderboard {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .leaderboard th, .leaderboard td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .leaderboard th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .leaderboard tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .leaderboard tr:hover {
+            background-color: #ddd;
+        }
+        #gameSelect {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Leaderboard</h1>
+
+        <label for="gameSelect">Select Game: </label>
+        <select id="gameSelect" onchange="fetchLeaderboard()">
+            <option value="BST-Builder">BST-Builder</option>
+            <option value="Array-Challenge">Array-Challenge</option>
+            <option value="Stack-Maze">Stack-Maze</option>
+            <!-- Add more game options here -->
+        </select>
+
+        <table class="leaderboard" id="leaderboardTable">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Email</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <!-- Leaderboard rows will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to fetch leaderboard data
+        async function fetchLeaderboard() {
+            const game = document.getElementById('gameSelect').value;
+
+            // Fetch leaderboard data from the backend
+            const response = await fetch(`https://dsa-launchpad-5-0.vercel.app/leaderboard/${game}`);
+            const data = await response.json();
+
+            if (data.success) {
+                populateLeaderboard(data.leaderboard);
+            } else {
+                console.error("Failed to fetch leaderboard:", data.message);
+            }
+        }
+
+        // Function to populate leaderboard table
+        function populateLeaderboard(leaderboard) {
+            const leaderboardBody = document.getElementById('leaderboardBody');
+            leaderboardBody.innerHTML = ''; // Clear the table body
+
+            // Populate table rows
+            leaderboard.forEach(player => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${player.rank}</td>
+                    <td>${player.email}</td>
+                    <td>${player.totalScore}</td>
+                `;
+                
+                leaderboardBody.appendChild(row);
+            });
+        }
+
+        // Fetch leaderboard on page load for the default game
+        fetchLeaderboard();
+    </script>
+</body>
+</html>
