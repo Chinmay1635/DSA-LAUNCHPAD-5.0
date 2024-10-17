@@ -5,7 +5,7 @@ const predefinedGames = require('../config/gamesConfig');
 
 
 module.exports.registerUser = async function (req, res) {
-    let {email} = req.body;
+    let {email, name} = req.body;
     try {
         //Checking is user is already registered or not
         let user = await userModel.findOne({ email: email });
@@ -18,6 +18,7 @@ module.exports.registerUser = async function (req, res) {
         //User creation
         user = await userModel.create({
             email,
+            name: name,
             password: password,
             scores: predefinedGames,
         });
