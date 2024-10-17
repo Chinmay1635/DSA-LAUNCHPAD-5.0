@@ -55,10 +55,17 @@ module.exports.getLeaderboard = async function (req, res) {
         const leaderboard = users
             .map(user => {
                 const gameData = user.scores.find(g => g.game === game);
-                return {
-                    email: user.email,
-                    totalScore: gameData ? gameData.totalScore : 0
-                };
+                if(user.name){
+                    return {
+                        name: user.name,
+                        totalScore: gameData ? gameData.totalScore : 0
+                    };
+                }else{
+                    return {
+                        name: user.email,
+                        totalScore: gameData ? gameData.totalScore : 0
+                    };
+                }
             })
             .sort((a, b) => b.totalScore - a.totalScore); 
 
