@@ -83,7 +83,7 @@ html, body{
 .hero{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between  ;
     /* position: absolute;
     top: 50%;
     left: 0;
@@ -108,6 +108,9 @@ html, body{
     font-size: 11vw;
     font-weight: 100;
     line-height: 1;
+    color: yellow;
+    -webkit-text-stroke: 2px black;
+
 }
 
 a{
