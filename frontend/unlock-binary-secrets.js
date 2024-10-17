@@ -8,6 +8,7 @@ resetBtn.addEventListener('click', () => {
     }else if(currentLevel==3){
         timeLeft = 120;
     }
+    document.getElementById('submit').disabled = false;
     startLevel(currentLevel);
 });
 
