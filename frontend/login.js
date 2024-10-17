@@ -58,82 +58,77 @@ registerBtn.addEventListener('click', () => {
 
 
 signUpBtn.addEventListener('click', (e) => {
-    console.log("clicked")
-    e.preventDefault();
-  
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-  
-    fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ name, email }),
-    })
-    .then(response => response.json())
-    .then(async data => {
-        if (data.success) {
-          localStorage.setItem('email', email);
-          console.log(data.token);
-            await Swal.fire({
-                title: "Hurray...",
-                text: "Account created successfully!",
-                icon: "success"
-            });
-            startGame();
-        } else {
-            await Swal.fire({
-                title: "Oops..",
-                text: "Error!!! Please try again.",
-                icon: "error"
-            });
-        }
-    })
-    .catch(error => console.error('Network error:', error));
+  console.log("clicked");
+  e.preventDefault();
 
-    
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+
+  fetch('https://dsa-launchpad-5-0.vercel.app/registerUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, email }),
+  })
+  .then(response => response.json())
+  .then(async data => {
+      if (data.success) {
+        localStorage.setItem('email', email);
+        console.log(data.token);
+          await Swal.fire({
+              title: "Hurray...",
+              text: "Account created successfully!",
+              icon: "success"
+          });
+          startGame();
+      } else {
+          await Swal.fire({
+              title: "Oops...",
+              text: "Error! Please try again.",
+              icon: "error"
+          });
+      }
+  })
+  .catch(error => {
+    console.error('Network error:', error);
+    Swal.fire({
+        title: "Network Error",
+        text: "Unable to connect. Please check your connection and try again.",
+        icon: "error"
+    });
   });
-signInBtn.addEventListener('click', (e) => {
-    console.log("clicked")
-    e.preventDefault();
-  
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-  
+});
 
-fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
+signInBtn.addEventListener('click', (e) => {
+  console.log("clicked");
+  e.preventDefault();
+
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  // Show the loading swal before making the request
+  Swal.fire({
+    title: "Logging in...",
+    text: "Please wait...",
+    icon: "info",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  // Only one fetch request for login
+  fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-    credentials: 'include',
-  })
-  .then(async () => {
-
-    const loadingSwal = Swal.fire({
-      title: "Logging in...",
-      text: "Please wait...",
-      icon: "info",
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      }
-    });
-
-    return fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
   })
   .then(response => response.json())
   .then(async data => {
-    Swal.close(); 
+    Swal.close(); // Close loading Swal when response is received
 
     if (data.success) {
       localStorage.setItem('email', email);
@@ -146,14 +141,14 @@ fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
       startGame();
     } else {
       await Swal.fire({
-        title: "Oops..",
-        text: "Error!!! Please try again.",
+        title: "Oops...",
+        text: "Error! Please try again.",
         icon: "error"
       });
     }
   })
   .catch(error => {
-    Swal.close(); 
+    Swal.close(); // Close loading Swal on error too
     console.error('Network error:', error);
 
     Swal.fire({
@@ -162,8 +157,7 @@ fetch('https://dsa-launchpad-5-0.vercel.app/loginUser', {
       icon: "error"
     });
   });
-
-  });
+});
 
 function startGame() {
     window.location.href = '/home.html';
