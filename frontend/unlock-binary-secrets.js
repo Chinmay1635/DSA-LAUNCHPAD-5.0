@@ -2,11 +2,11 @@ const resetBtn = document.getElementById('reset');
 
 resetBtn.addEventListener('click', () => {
     if(currentLevel==1){
-        timeLeft = 30;
+        timeLeft = 45;
     }else if(currentLevel==2){
-        timeLeft = 100;
+        timeLeft = 60;
     }else if(currentLevel==3){
-        timeLeft = 120;
+        timeLeft = 80;
     }
     document.getElementById('submit').disabled = false;
     startLevel(currentLevel);
@@ -73,7 +73,7 @@ const levelData = {
 };
 
 let timer; 
-let timeLeft = 30; 
+let timeLeft = 45; 
 
 const timerDisplay = document.getElementById('timerDisplay');
 timerDisplay.innerText = `Time Left: ${timeLeft}s`;
@@ -284,15 +284,15 @@ function checkAllNodesPlaced() {
 
 function calculateScore(level){
     if(level==1){
-        if(timeLeft>=20){
+        if(timeLeft>=30){
             return 10;
-        }else if(timeLeft>=18){
+        }else if(timeLeft>=25){
             return 9;
-        }else if(timeLeft>=16){
+        }else if(timeLeft>=20){
             return 8;
-        }else if(timeLeft>=14){
+        }else if(timeLeft>=15){
             return 7;
-        }else if(timeLeft>=12){
+        }else if(timeLeft>=7){
             return 6;
         }else{
             return 5;
@@ -366,9 +366,9 @@ document.getElementById('submit').addEventListener('click', () => {
         if (currentLevel < 3) {
             currentLevel++;
             if(currentLevel==2){
-                timeLeft = 100;
+                timeLeft = 60;
             }else if(currentLevel==3){
-                timeLeft = 120;
+                timeLeft = 80;
             }
             alert(`Level ${currentLevel - 1} completed! Moving to Level ${currentLevel}.`);
             startLevel(currentLevel); // Start next level
