@@ -68,7 +68,7 @@ module.exports.getLeaderboard = async function (req, res) {
             user.rank = index + 1;
         });
 
-        res.json({ success: true, leaderboard });
+        res.json({ success: true, leaderboard, users });
 
     } catch (error) {
         res.status(500).json({ success: false, message: "Failed to fetch leaderboard", error: error.message });
