@@ -56,6 +56,7 @@ module.exports.getLeaderboard = async function (req, res) {
             .map(user => {
                 const gameData = user.scores.find(g => g.game === game);
                 return {
+                    email: user.name,
                     name: user.email,
                     totalScore: gameData ? gameData.totalScore : 0
                 };
