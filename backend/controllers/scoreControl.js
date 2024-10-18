@@ -50,14 +50,13 @@ module.exports.getLeaderboard = async function (req, res) {
     const { game } = req.params;  
 
     try {
-        const users = await userModel.find({ "scores.game": game }, { email: 1, scores: 1 });
+        const users = await userModel.find({ "scores.game": game }, { email: 1, scores: 1, name: 1 });
 
         const leaderboard = users
             .map(user => {
                 const gameData = user.scores.find(g => g.game === game);
                 return {
-                    email: user.name,
-                    name: user.email,
+                    name: user.name,
                     totalScore: gameData ? gameData.totalScore : 0
                 };
             })
