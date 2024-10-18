@@ -78,8 +78,8 @@
             const data = await response.json();
 
             if (data.success) {
-                // console.log("Leaderboard data:", data.leaderboard);
-                console.log(data.users)
+                
+                
                 populateLeaderboard(data.leaderboard);
             } else {
                 console.error("Failed to fetch leaderboard:", data.message);
