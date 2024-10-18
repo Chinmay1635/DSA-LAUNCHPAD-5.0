@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Towers of Hanoi</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="tohc.css">
+</head>
+
+<body>
+  <div id="canvas">
+    <div id="title">
+      <h3 style="text-align: center;">DSA LAUNCHPAD 5.0</h3>
+      <h1>Towers Of Hanoi</h1>
+    </div>
+    <br />
+    <div class="level"></div>
+    <div class="moves"></div>
+    <br /><br />
+    <div id="towers">
+      <div class="t" value="0">
+        <ul id="t1" value="0" class="base">
+          <ul class="line1"></ul>
+        </ul>
+      </div>
+      <div class="t" value="1">
+        <ul id="t2" value="1" class="base">
+          <ul class="line2"></ul>
+        </ul>
+      </div>
+      <div class="t" value="2">
+        <ul id="t3" value="2" class="base">
+          <ul class="line3"></ul>
+        </ul>
+      </div>
+    </div>
+    <br /><br /><br />
+    <div id="restart">
+      <button type="button" class="buttons">Restart Level</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="tohj.js"></script>
+  </div>
+</body>
+
+</html>
