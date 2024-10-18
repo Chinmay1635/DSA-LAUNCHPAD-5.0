@@ -58,7 +58,7 @@
             <thead>
                 <tr>
                     <th>Rank</th>
-                    <th>Email</th>
+                    <th>Name</th>
                     <th>Total Score</th>
                 </tr>
             </thead>
@@ -94,7 +94,7 @@
             // Populate table rows
             leaderboard.forEach(player => {
                 const row = document.createElement('tr');
-                console.log(player.email);
+                
                 row.innerHTML = `
                     <td>${player.rank}</td>
                     <td>${player.name}</td>
