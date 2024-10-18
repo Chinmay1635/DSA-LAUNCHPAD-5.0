@@ -118,8 +118,8 @@ $(document).ready(function() {
     }
     currentScore = Math.max(currentScore, 50); // Ensure minimum score is 50
     score += currentScore; // Add current level score to total score
-    completeLevel(score, level, "toh");
-    alert("Level completed! You earned " + currentScore + " points.");
+    completeLevel(currentScore, level, "toh");
+    alert("Level completed!");
   }
 
   function nextLevel() {
@@ -128,7 +128,7 @@ $(document).ready(function() {
       alert("Level " + level + " starting!");
       init(); // Restart with the new level
     } else {
-      alert("Congratulations! You have completed all levels! Final Score: " + score);
+      alert("Congratulations! You have completed all levels!");
     }
   }
 
