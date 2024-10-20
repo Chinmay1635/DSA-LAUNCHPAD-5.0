@@ -374,6 +374,9 @@ document.getElementById('submit').addEventListener('click', () => {
             startLevel(currentLevel); // Start next level
         } else {
             alert('Congratulations! You completed all levels!');
+            setInterval(() =>{
+                window.location.href = '/home.html';
+            }, 2000);
         }
     } else {
         document.getElementById('result').innerText = 'Invalid BST. Try again!';
