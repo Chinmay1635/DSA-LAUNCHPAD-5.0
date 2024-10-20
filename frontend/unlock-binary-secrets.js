@@ -285,45 +285,45 @@ function checkAllNodesPlaced() {
 function calculateScore(level){
     if(level==1){
         if(timeLeft>=30){
-            return 10;
+            return 100;
         }else if(timeLeft>=25){
-            return 9;
+            return 90;
         }else if(timeLeft>=20){
-            return 8;
+            return 80;
         }else if(timeLeft>=15){
-            return 7;
+            return 70;
         }else if(timeLeft>=7){
-            return 6;
+            return 60;
         }else{
-            return 5;
+            return 50;
         }
     }else if(level==2){
         if(timeLeft>=40){
-            return 10;
+            return 100;
         }else if(timeLeft>=35){
-            return 9;
+            return 90;
         }else if(timeLeft>=30){
-            return 8;
+            return 80;
         }else if(timeLeft>=25){
-            return 7;
+            return 70;
         }else if(timeLeft>=15){
-            return 6;
+            return 60;
         }else{
-            return 5;
+            return 50;
         }
     }else if(level==3){
         if(timeLeft>=60){
-            return 10;
+            return 100;
         }else if(timeLeft>=50){
-            return 9;
+            return 90;
         }else if(timeLeft>=40){
-            return 8;
+            return 80;
         }else if(timeLeft>=30){
-            return 7;
+            return 70;
         }else if(timeLeft>=20){
-            return 6;
+            return 60;
         }else{
-            return 5;
+            return 50;
         }
     }
 }
