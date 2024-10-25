@@ -41,11 +41,11 @@ This platform provides users with an engaging way to learn DSA through hands-on 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/dsa-launchpad-platform.git
+   git clone https://github.com/Chinmay1635/DSA-LAUNCHPAD-5.0.git
    ```
 2. Navigate to the project directory and install dependencies:
    ```bash
-   cd dsa-launchpad-platform
+   cd DSA-LAUNCHPAD-5.0
    npm install
    ```
 
@@ -61,11 +61,26 @@ This platform provides users with an engaging way to learn DSA through hands-on 
 
 ## Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript (Netlify deployment)
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (Vercel-hosted API)
-- **Authentication**: JWT (JSON Web Tokens)
-- **Hosting**: Vercel (backend), Netlify (frontend)
+- **Frontend**: 
+  ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+  ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white) 
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) 
+  ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+
+- **Backend**: 
+  ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node-dot-js&logoColor=white) 
+  ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+
+- **Database**: 
+  ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+
+- **Authentication**: 
+  ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+
+- **Hosting**: 
+  ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) 
+  ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+
 
 ## APIs
 
