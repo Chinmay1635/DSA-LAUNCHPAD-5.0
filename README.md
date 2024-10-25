@@ -3,6 +3,11 @@
 
 Welcome to the **DSA Launchpad 5.0 Game Platform**! This platform was developed for the **WCE ACM Student Chapter** event, DSA Launchpad 5.0, to engage students in learning Data Structures and Algorithms through interactive games.
 
+## Deployed Project
+
+Check out the live project here: [DSA Launchpad 5.0](https://dsa-launchpad-5.netlify.app/)
+
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
