@@ -26,15 +26,15 @@ module.exports.registerUser = async function (req, res) {
         //Token generation
         let token = generateToken(user.email);
 
-        //Setting cookie into browser
-        // res.cookie("token", token, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     maxAge: 30 * 24 * 60 * 60 * 1000,
-        //     sameSite: 'none',
-        //     path: '/',
-        //     domain: 'https://dsa-launchpad-5.netlify.app/'
-        // });
+        // Setting cookie into browser
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+            sameSite: 'none',
+            path: '/',
+            domain: 'https://dsa-launchpad-5.netlify.app/'
+        });
 
        
 
@@ -61,14 +61,14 @@ module.exports.loginUser = async function (req, res) {
             //Token generation
             let token = generateToken(user.email);
 
-            //Setting cookie into browser
-            // res.cookie("token", token, {
-            //     // httpOnly: true,
-            //     // secure: true,
-            //     // maxAge: 30 * 24 * 60 * 60 * 1000,
-            //     sameSite: 'none',
-            //     path: '/',
-            // });
+            // Setting cookie into browser
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+                sameSite: 'none',
+                path: '/',
+            });
 
         res.json({message: `Loged in with email ${email}`, success: true});
             
